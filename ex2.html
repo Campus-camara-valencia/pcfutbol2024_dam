@@ -1,0 +1,50 @@
+
+<script>
+    $(document).ready(function() {
+        $('#FormRegistroEquipo').on('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: "POST",
+                url: "logica/logicaCrearEquipo.php",
+                data: formData,
+                dataType: "json",
+                success: function(respuesta) {
+                    if (respuesta.success) {
+                        $("#resultado").html('<div class="alert alert-success">Equipo registrado correctamente</div>');
+                        $('#FormRegistroEquipo')[0].reset();
+                    } else {
+                        $("#resultado").html('<div class="alert alert-danger">Error: ' + respuesta.error + '</div>');
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#FormCrearJugador').on('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: "POST",
+                url: "logica/logicaCrearJugador",
+                data: formData,
+                dataType: "json",
+                success: function(respuesta) {
+                    if (respuesta.success) {
+                        $("#resultado").html('<div class="alert alert-success">Jugador creado correctamente</div>');
+                        $('#FormCrearJugador')[0].reset();
+                    } else {
+                        $("#resultado").html('<div class="alert alert-danger">Error: ' + respuesta.error + '</div>');
+                    }
+                }
+            });
+        });
+    });
+</script>
